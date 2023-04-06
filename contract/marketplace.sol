@@ -51,11 +51,34 @@ mapping(uint => artInfo) internal listedArts;
 //store purchased arts
 mapping(address => purchasedArt[]) internal purchasedArts;
 
+
+
 //modifier for onlyOwner
 modifier onlyOwner(uint _index){
     require(msg.sender == listedArts[_index].owner,"You are not authorized");
     _;
 }
+
+//event emitted when an art is listed
+    event ArtListed(
+        address indexed owner,
+        string name,
+        string ImgUrl,
+        string Details,
+        string Location,
+        uint price,
+        string email
+    );
+
+     //event emitted when an art is purchased
+    event ArtPurchased(
+        address indexed buyer,
+        string name,
+        string imgUrl,
+        uint price
+    );
+
+mapping(string => bool) internal listedArtwork;
 
 
 //store  art in the smart contract
@@ -73,7 +96,9 @@ function listArt(
     require(bytes(_location).length > 0, "location cannot be empty");
     require(bytes(_email).length > 0, "email cannot be empty");
     require(_price > 0, "Price is invalid");
+    require(!listedArtwork[_ImgUrl], "Artwork has already been listed");
 
+    listedArtwork[_ImgUrl] = true;
     listedArts[listedArtLength] = artInfo(
         payable(msg.sender),
         _name,
@@ -84,6 +109,9 @@ function listArt(
         _email
         );
         listedArtLength++;
+
+      emit ArtListed(msg.sender, _name, _ImgUrl, _details, _location, _price, _email);
+
 }
  
 //get  art with specific id
@@ -96,6 +124,8 @@ function  buyArt(uint _index) public payable {
     artInfo memory art = listedArts[_index];
     require(msg.sender != art.owner,"You are already the owner");
 
+        art.owner = payable(msg.sender);
+        
     require(
           IERC20Token(cUsdTokenAddress).transferFrom(
             msg.sender,
@@ -112,7 +142,9 @@ function  buyArt(uint _index) public payable {
             art.price,
             art.email
         ));
-        art.owner = payable(msg.sender);
+
+emit ArtPurchased(msg.sender, art.name, art.ImgUrl, art.price);
+
 }
 
 //Retreive art purchased by a specific buyer
@@ -131,10 +163,19 @@ function EditPrice(uint _index, uint _price) public onlyOwner(_index){
     listedArts[_index].price = _price;
 }
 
+event ArtDeleted(uint indexed index, address owner);
+
 //delete art from store
 function deleteArt(uint _index) public onlyOwner(_index){
+    require(_index < listedArtLength, "Invalid index");
     delete listedArts[_index];
+     emit ArtDeleted(_index, msg.sender);
 }
+
+ fallback() external payable {
+     revert("No function specified to handle the transaction");
+ }
+
 
 
 }
