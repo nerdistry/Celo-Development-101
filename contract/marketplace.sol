@@ -51,12 +51,6 @@ mapping(uint => artInfo) internal listedArts;
 //store purchased arts
 mapping(address => purchasedArt[]) internal purchasedArts;
 
-//modifier for onlyOwner
-modifier onlyOwner(uint _index){
-    require(msg.sender == listedArts[_index].owner,"You are not authorized");
-    _;
-}
-
 
 //store  art in the smart contract
 function listArt(
@@ -126,13 +120,13 @@ function artLength() public view returns(uint){
 }
 
 //Edit the art price
-function EditPrice(uint _index, uint _price) public onlyOwner(_index){
+function EditPrice(uint _index, uint _price) public {
     require(_price > 0,"Price can not be zero");
     listedArts[_index].price = _price;
 }
 
 //delete art from store
-function deleteArt(uint _index) public onlyOwner(_index){
+function deleteArt(uint _index) public {
     delete listedArts[_index];
 }
 
