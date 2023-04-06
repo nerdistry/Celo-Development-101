@@ -1,4 +1,5 @@
-# Cameo
+# •aesthete•
+
 
 ## Description
 A decentralized Art Marketplace  on celo blockchain where you can:
