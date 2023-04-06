@@ -81,7 +81,7 @@ function renderProducts() {
   marketplace.empty();
 
   if (aesthetics) {
-    for (let i = 0; i <= aesthetics.length; i++) {
+    for (let i = 0; i < aesthetics.length; i++) {
       if (aesthetics[i]["name"].length) {
         marketplace.append(
           `
