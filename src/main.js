@@ -1,71 +1,88 @@
 
 
-import Web3 from "web3"
-import { newKitFromWeb3 } from "@celo/contractkit"
-import BigNumber from "bignumber.js"
-import marketplaceAbi from "../contract/marketplace.abi.json"
-import erc20Abi from "../contract/erc20.abi.json"
+import Web3 from "web3";
+import { newKitFromWeb3 } from "@celo/contractkit";
+import BigNumber from "bignumber.js";
+import marketplaceAbi from "../contract/marketplace.abi.json";
+import erc20Abi from "../contract/erc20.abi.json";
 
-const ERC20_DECIMALS = 18
-const MPContractAddress = "0xF9E4F68754AE395a2658c9ae101bEd0070301268"
-const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"
+const ERC20_DECIMALS = 18;
+const MPContractAddress = "0xF9E4F68754AE395a2658c9ae101bEd0070301268";
+const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
 
-let kit
-let contract
+let kit;
+let contract;
 let aesthetics = [];
 
 const connectCeloWallet = async function () {
   if (window.celo) {
-    notification("⚠️ Please approve this DApp to use it.")
     try {
-      await window.celo.enable()
-      notificationOff()
+      // Prompt the user to approve the DApp to use the wallet
+      notification("⚠️ Please approve this DApp to use it.");
+      
+      // Enable the wallet
+      await window.celo.enable();
+      notificationOff();
 
-      const web3 = new Web3(window.celo)
-      kit = newKitFromWeb3(web3)
+      const web3 = new Web3(window.celo);
+      kit = newKitFromWeb3(web3);
 
-      const accounts = await kit.web3.eth.getAccounts()
-      kit.defaultAccount = accounts[0]
+      const accounts = await kit.web3.eth.getAccounts();
+      kit.defaultAccount = accounts[0];
 
-      contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress)
+      contract = new kit.web3.eth.Contract(marketplaceAbi, MPContractAddress);
     } catch (error) {
-      notification(`⚠️ ${error}.`)
+      notification(`⚠️ ${error}`);
     }
   } else {
-    notification("⚠️ Please install the CeloExtensionWallet.")
+    notification("⚠️ Please install the CeloExtensionWallet.");
+  }
+};
+
+async function approve(price) {
+  try {
+    const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress);
+
+    const result = await cUSDContract.methods
+      .approve(MPContractAddress, price)
+      .send({ from: kit.defaultAccount });
+      
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 }
 
-async function approve(_price) {
-  const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress)
-
-  const result = await cUSDContract.methods
-    .approve(MPContractAddress, _price)
-    .send({ from: kit.defaultAccount })
-  return result
-}
-
 const getBalance = async function () {
-  const totalBalance = await kit.getTotalBalance(kit.defaultAccount)
-  const cUSDBalance = totalBalance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2)
-  document.querySelector("#balance").textContent = cUSDBalance
-}
+  try {
+    const totalBalance = await kit.getTotalBalance(kit.defaultAccount);
+    const cUSDBalance = totalBalance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2);
+    document.querySelector("#balance").textContent = cUSDBalance;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 const getProducts = async function() {
-  const _aestheticLength = await contract.methods.aestheticLength().call()
-  const _aestheticArr = []
-  for (let i = 0; i < _aestheticLength; i++) {
-    let _aesthetic = new Promise(async (resolve, reject) => {
-      let p = await contract.methods.readaesthetic(i).call()
-      resolve({
-        index: i,
-        owner: p[0],
-        name: p[1],
-        image: p[2],
-        description: p[3],
-        location: p[4],
-        price: new BigNumber(p[5]),
-        sold: p[6],
+  try {
+    const aestheticLength = await contract.methods.aestheticLength().call();
+    const aestheticArr = [];
+
+    for (let i = 0; i < aestheticLength; i++) {
+      let aesthetic = new Promise(async (resolve, reject) => {
+        try {
+          let p = await contract.methods.readAesthetic(i).call();
+          resolve({
+            index: i,
+            owner: p[0],
+            name: p[1],
+            image: p[2],
+            description: p[3],
+            location: p[4],
+            price: new BigNumber(p[5]),
+            sold: p[6],
       })
     })
     _aestheticArr.push(_aesthetic)
