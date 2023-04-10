@@ -1,17 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.3;
 
-interface IERC20Token {
-  function transfer(address, uint256) external returns (bool);
-  function approve(address, uint256) external returns (bool);
-  function transferFrom(address, address, uint256) external returns (bool);
-  function totalSupply() external view returns (uint256);
-  function balanceOf(address) external view returns (uint256);
-  function allowance(address, address) external view returns (uint256);
-  event Transfer(address indexed from, address indexed to, uint256 value);
-  event Approval(address indexed owner, address indexed spender, uint256 value);
-}
-
+import "./IERC20Token.sol";
 
 contract  discover_aesthetics{
 
@@ -86,27 +76,36 @@ function getSpecificArt(uint _index) public view returns(artInfo memory){
 }
 
 //Buy art 
-function  buyArt(uint _index) public payable {
+function buyArt(uint _index) public payable {
     artInfo memory art = listedArts[_index];
-    require(msg.sender != art.owner,"You are already the owner");
+    require(msg.sender != art.owner, "You are already the owner");
 
     require(
-          IERC20Token(cUsdTokenAddress).transferFrom(
+        IERC20Token(cUsdTokenAddress).allowance(msg.sender, address(this)) >= art.price,
+        "You have not approved this contract to spend your cUSD tokens"
+    );
+
+    require(
+        IERC20Token(cUsdTokenAddress).transferFrom(
             msg.sender,
             art.owner,
             art.price
-          ),
-          "Transfer failed."
-        );
-        purchasedArts[msg.sender].push(purchasedArt(
+        ),
+        "Transfer failed."
+    );
+    purchasedArts[msg.sender].push(
+        purchasedArt(
             art.owner,
             art.name,
             art.ImgUrl,
             block.timestamp,
             art.price,
             art.email
-        ));
-        art.owner = payable(msg.sender);
+        )
+    );
+    art.owner = payable(msg.sender);
+}
+
 }
 
 //Retreive art purchased by a specific buyer
