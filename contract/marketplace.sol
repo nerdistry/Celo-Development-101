@@ -14,6 +14,12 @@ interface IERC20Token {
 
 
 contract  discover_aesthetics{
+    address PlatformOwner;
+
+    constructor() {
+
+        PlatformOwner = msg.sender;
+    }
 
     //track the number of arts stored
     uint internal listedArtLength;
@@ -51,11 +57,31 @@ mapping(uint => artInfo) internal listedArts;
 //store purchased arts
 mapping(address => purchasedArt[]) internal purchasedArts;
 
+//mapping for listed Artists
+mapping (address => bool) internal Artists;
+
 //modifier for onlyOwner
 modifier onlyOwner(uint _index){
     require(msg.sender == listedArts[_index].owner,"You are not authorized");
     _;
 }
+
+//check for verfied artist
+modifier OnlyArtiste(){
+    require(Artists[msg.sender] == true);
+    _;
+}
+
+modifier OnlyPlatFormOwner(){
+    require(msg.sender == PlatformOwner,"You are not Authorized");
+    _;
+}
+
+function Addartist (address _Artiste) public OnlyPlatFormOwner(){
+    Artists[_Artiste] = true;
+}
+
+
 
 
 //store  art in the smart contract
@@ -66,7 +92,7 @@ function listArt(
     string calldata _location,
     uint _price,
     string calldata _email
-) public {
+) public OnlyArtiste() {
     require(bytes(_name).length > 0, "name cannot be empty");
     require(bytes(_ImgUrl).length > 0, "url cannot be empty");
     require(bytes(_details).length > 0, "details cannot be empty");
