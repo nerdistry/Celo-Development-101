@@ -1,25 +1,7 @@
 [
     {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_index",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_price",
-                "type": "uint256"
-            }
-        ],
-        "name": "EditPrice",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "inputs": [],
-        "name": "artLength",
+        "name": "aestheticLength",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -38,7 +20,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "buyArt",
+        "name": "buyAesthetic",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
@@ -51,54 +33,9 @@
                 "type": "uint256"
             }
         ],
-        "name": "deleteArt",
+        "name": "deleteAesthetic",
         "outputs": [],
         "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getMyArts",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "address",
-                        "name": "From",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "name",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "imgUrl",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "timestamp",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "price",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "email",
-                        "type": "string"
-                    }
-                ],
-                "internalType": "struct discover_aesthetics.purchasedArt[]",
-                "name": "",
-                "type": "tuple[]"
-            }
-        ],
-        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -107,54 +44,16 @@
                 "internalType": "uint256",
                 "name": "_index",
                 "type": "uint256"
-            }
-        ],
-        "name": "getSpecificArt",
-        "outputs": [
+            },
             {
-                "components": [
-                    {
-                        "internalType": "address payable",
-                        "name": "owner",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "name",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "ImgUrl",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "Details",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "Location",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "price",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "email",
-                        "type": "string"
-                    }
-                ],
-                "internalType": "struct discover_aesthetics.artInfo",
-                "name": "",
-                "type": "tuple"
+                "internalType": "uint256",
+                "name": "_price",
+                "type": "uint256"
             }
         ],
-        "stateMutability": "view",
+        "name": "editPrice",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -166,12 +65,12 @@
             },
             {
                 "internalType": "string",
-                "name": "_ImgUrl",
+                "name": "_image",
                 "type": "string"
             },
             {
                 "internalType": "string",
-                "name": "_details",
+                "name": "_description",
                 "type": "string"
             },
             {
@@ -183,16 +82,60 @@
                 "internalType": "uint256",
                 "name": "_price",
                 "type": "uint256"
+            }
+        ],
+        "name": "listAesthetic",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_index",
+                "type": "uint256"
+            }
+        ],
+        "name": "readAesthetic",
+        "outputs": [
+            {
+                "internalType": "address payable",
+                "name": "owner",
+                "type": "address"
             },
             {
                 "internalType": "string",
-                "name": "_email",
+                "name": "",
                 "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
             }
         ],
-        "name": "listArt",
-        "outputs": [],
-        "stateMutability": "nonpayable",
+        "stateMutability": "view",
         "type": "function"
     }
 ]
