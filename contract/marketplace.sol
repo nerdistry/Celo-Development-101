@@ -13,128 +13,122 @@ interface IERC20Token {
 }
 
 
-contract  discover_aesthetics{
+contract Aesthetics{
 
-    //track the number of arts stored
-    uint internal listedArtLength;
+    //track the number of  stored
+      uint internal listedAestheticLength = 0;
 
     //cUSD token address
     address internal cUsdTokenAddress = 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1;
 
 
-    //struct to hold art details
-    struct artInfo{
+    //struct to hold details
+    struct aesthetic{
         address payable owner;
         string name;
-        string ImgUrl;
-        string Details;
-        string Location;
+        string image;
+        string description;
+        string location;
         uint price;
-        string email;
+        uint sold;
     }
 
 
-//store purchased arts
-struct purchasedArt{
-    address From;
-    string name;
-    string imgUrl;
-    uint timestamp;
-    uint price;
-    string email;
-}
+    //store all the listed 
+    mapping(uint => aesthetic) internal listedAesthetics;
 
 
-//store all the listed arts
-mapping(uint => artInfo) internal listedArts;
+    //modifier for onlyOwner
+    modifier onlyOwner(uint _index){
+        require(msg.sender == listedAesthetics[_index].owner,"You are not authorized");
+        _;
+    }
 
-//store purchased arts
-mapping(address => purchasedArt[]) internal purchasedArts;
+    //store  in the smart contract
+    function listAesthetic(
+        string calldata _name,
+        string calldata _image,
+        string calldata _description,
+        string calldata _location,
+        uint _price
+    ) public {
+        require(bytes(_name).length > 0, "name cannot be empty");
+        require(bytes(_image).length > 0, "url cannot be empty");
+        require(bytes(_description).length > 0, "details cannot be empty");
+        require(bytes(_location).length > 0, "location cannot be empty");
+        require(_price > 0, "Price is invalid");
 
-//modifier for onlyOwner
-modifier onlyOwner(uint _index){
-    require(msg.sender == listedArts[_index].owner,"You are not authorized");
-    _;
-}
+        uint _sold = 0;
+        listedAesthetics[listedAestheticLength] = aesthetic(
+            payable(msg.sender),
+            _name,
+            _image,
+            _description,
+            _location,
+            _price,
+            _sold
+            );
+            listedAestheticLength++;
+    }
+    
+    //get  with specific id
+    function readAesthetic(uint _index) public view returns(
+        address payable owner,
+        string memory,
+        string memory,
+        string memory,
+        string memory,
+        uint,
+        uint
+    ){
+        return 
+        (
+            listedAesthetics[_index].owner,
+            listedAesthetics[_index].name,
+            listedAesthetics[_index].image,
+            listedAesthetics[_index].description,
+            listedAesthetics[_index].location,
+            listedAesthetics[_index].price,
+            listedAesthetics[_index].sold
 
-
-//store  art in the smart contract
-function listArt(
-    string calldata _name,
-    string calldata _ImgUrl,
-    string calldata _details,
-    string calldata _location,
-    uint _price,
-    string calldata _email
-) public {
-    require(bytes(_name).length > 0, "name cannot be empty");
-    require(bytes(_ImgUrl).length > 0, "url cannot be empty");
-    require(bytes(_details).length > 0, "details cannot be empty");
-    require(bytes(_location).length > 0, "location cannot be empty");
-    require(bytes(_email).length > 0, "email cannot be empty");
-    require(_price > 0, "Price is invalid");
-
-    listedArts[listedArtLength] = artInfo(
-        payable(msg.sender),
-        _name,
-        _ImgUrl,
-        _details,
-        _location,
-        _price,
-        _email
         );
-        listedArtLength++;
-}
- 
-//get  art with specific id
-function getSpecificArt(uint _index) public view returns(artInfo memory){
-    return listedArts[_index];
-}
+    }
 
-//Buy art 
-function  buyArt(uint _index) public payable {
-    artInfo memory art = listedArts[_index];
-    require(msg.sender != art.owner,"You are already the owner");
+    //Buy
+    function  buyAesthetic(uint _index) public payable {
+        aesthetic memory _aesthetic = listedAesthetics[_index];
+        require(msg.sender != _aesthetic.owner,"You are already the owner");
+        require(IERC20Token(cUsdTokenAddress).balanceOf(msg.sender) >= listedAesthetics[_index].price, "Insufficient balance in cUSD token");
 
-    require(
-          IERC20Token(cUsdTokenAddress).transferFrom(
-            msg.sender,
-            art.owner,
-            art.price
-          ),
-          "Transfer failed."
-        );
-        purchasedArts[msg.sender].push(purchasedArt(
-            art.owner,
-            art.name,
-            art.ImgUrl,
-            block.timestamp,
-            art.price,
-            art.email
-        ));
-        art.owner = payable(msg.sender);
-}
+        require(
+            IERC20Token(cUsdTokenAddress).transferFrom(
+                msg.sender,
+                _aesthetic.owner,
+                _aesthetic.price
+            ),
+            "Transfer failed."
+            );
 
-//Retreive art purchased by a specific buyer
-function getMyArts() public view returns(purchasedArt[] memory){
-    return purchasedArts[msg.sender];
-}
+            // increment the sold amount
+            listedAesthetics[_index].sold++;
 
-//get listed art length
-function artLength() public view returns(uint){
-    return listedArtLength;
-}
+    }
 
-//Edit the art price
-function EditPrice(uint _index, uint _price) public onlyOwner(_index){
-    require(_price > 0,"Price can not be zero");
-    listedArts[_index].price = _price;
-}
+    //get listed  length
+    function aestheticLength() public view returns(uint){
+        return listedAestheticLength;
+    }
 
-//delete art from store
-function deleteArt(uint _index) public onlyOwner(_index){
-    delete listedArts[_index];
-}
+    // delete 
+    function deleteAesthetic(uint _index) public onlyOwner(_index) {
+        delete listedAesthetics[_index];
+    }
+
+    // Edit the price
+    function editPrice(uint _index, uint _price) public onlyOwner(_index){
+        require(_price > 0,"Price can not be zero");
+        listedAesthetics[_index].price = _price;
+    }
 
 
 }
