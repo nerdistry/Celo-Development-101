@@ -7,7 +7,7 @@ import marketplaceAbi from "../contract/marketplace.abi.json"
 import erc20Abi from "../contract/erc20.abi.json"
 
 const ERC20_DECIMALS = 18
-const MPContractAddress = "0x10F80800be45c963f3885Ff9625F5DaD51bbe8EB"
+const MPContractAddress = "0x0796C8C3b37943e0a4bd797A3aEFd39a44c5131e"
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"
 
 let kit
@@ -55,8 +55,8 @@ const getProducts = async function() {
   const _aestheticLength = await contract.methods.aestheticLength().call()
   const _aestheticArr = []
   for (let i = 0; i < _aestheticLength; i++) {
-    let _aesthetic = new Promise(async (resolve, reject) => {
-      let p = await contract.methods.readaesthetic(i).call()
+  let _aesthetic = new Promise(async (resolve, reject) => {
+    let p = await contract.methods.readAesthetic(i).call()
       resolve({
         index: i,
         owner: p[0],
@@ -81,7 +81,7 @@ function renderProducts() {
   marketplace.empty();
 
   if (aesthetics) {
-    for (let i = 0; i <= aesthetics.length; i++) {
+    for (let i = 0; i < aesthetics.length; i++) {
       if (aesthetics[i]["name"].length) {
         marketplace.append(
           `
@@ -167,7 +167,7 @@ window.addEventListener("load", async () => {
 });
 
 document
-  .querySelector("#listaestheticBtn")
+  .querySelector("#listAestheticBtn")
   .addEventListener("click", async (e) => {
 
     const params = [

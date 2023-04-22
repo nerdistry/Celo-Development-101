@@ -27,16 +27,136 @@
     />
     
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-      :root {
-        --bs-font-sans-serif: "DM Sans", sans-serif;
-        --bs-gray: #6c757d;
+      *{
+        padding: 0;
+        margin: 0;
       }
+
+      .navbar-brand{
+        font-size: 2rem;
+        color: black;
+        
+      }
+
+      .navbar-brand:hover{
+        color: black;
+      }
+
+      .nav-link{
+        margin-right: 10px;
+        margin-left: 10px;
+        color: black;
+        text-transform: uppercase;
+      }
+
+      .nav-link:hover{
+        color: black;
+      }
+
+      .search{
+        height: 40px;
+        width: 80%;
+        border-radius: 60px;
+        outline: none;
+        margin-right: -35px;
+        border: 2px solid #f3d7b3;
+      }
+
+      .btn0{
+        height: 40px;
+        width: 40%;
+        outline: none;
+        border: none;
+        background: #f3d7b3;
+        color: white;
+        border-radius: 60px;
+        font-weight: 700;
+
+      }
+
+      .spinner-color{
+        color: #f7d5a8;
+      }
+
+      .main{
+        background: url("https://images.pexels.com/photos/4491539/pexels-photo-4491539.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")no-repeat;
+        background-size: cover;
+        height: 90vh;
+        width: 100%;
+        background-position: 50%;
+       
+      }
+
+      .main .col-lg-7 h4{
+       padding-bottom: 15px;
+       font-size: 4rem;
+       font-weight: 700;
+      }
+      .col-lg-7 h2 i{
+      font-size: 70px;
+      color: #7d5a50;
+      font-size: 4rem;
+      font-weight: 700;
+
+      }
+
+      .btn1{
+        height:60px;
+        width: 200px;
+        margin: 0 35px;
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        background: #7d5a50;
+        color: #f3d7b3;
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        
+      }
+
+
+      .col-lg-4 img{
+        border-radius: 50%;
+        width: 100px;
+        height:100px;
+      }
+
+      .card:hover{
+        box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+        -webkit-box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+        -moz-box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+        transform: 0.5s;
+
+
+      }
+
+      .btn2{
+        background-image: url("button2.jpg");
+        border-radius: 20%;
+        background-color: transparent; 
+        color:rgb(252, 122, 0);
+        border: 0;
+        padding: 14px 80px 14px 65px;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 20px;
+        
+      }
+
+
+
 
 
     </style>
 
-    <title>Cameo</title>
+    <title>•aesthete•</title>
   </head>
 
   <body>
@@ -50,74 +170,81 @@
     </div>
 
 
-   <!-- Navbar starts here -->
-  <nav class="navbar bg-white navbar-light " >
-        <div class="container">
-          <span class="navbar-brand m-0 h4 fw-bold text-black">Cameo </span>
-          <span class="nav-link border rounded-pill bg-light">
+<!-- Begin Navbar -->
+
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">•aesthete•</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav m-auto my-2 my-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" style="font-weight: 600;" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="font-weight: 600;" href="#">Store</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="font-weight: 600;" href="#">
+                Contact
+              </a>
+            </li>
+            
+          </ul>
+          <span class="nav-link border rounded-pill" style="background-color:#f3d7b3; padding:10px; border-color:#f3d7b3 ;">
             <span id="balance">0</span>
             cUSD
           </span>
+         
         </div>
-      </nav>
- <!-- Navbar ends here -->
+      </div>
+    </nav>
+</div> <!-- Ending the max width in the navbar  -->
 
+    <!-- End Navbar -->
 
+    <!-- <div class="alert alert-warning sticky-top mt-2" role="alert" style="background-color: #f3d7b3;">
+      <span id="notification" style="font-weight: 500; font-size: large; color: black;"> ⌛ Loading...</span>
+    </div> -->
 
- <!-- Hero starts here -->
- <div class="row bg-dark text-white">
-    <div class="col-md-12 p-5 text-center">
-      <h4>Visualize the vision</h4>
-      <p>
-        Cameo is a marketplace where you can buy and sell Cameras with your tokens on  the celo blockchain.
-        <p>
-      <button class="btn btn-dark shadow" data-bs-toggle="modal"
-          data-bs-target="#addModal">Add Camera</button>
-    </div>
+ <!-- Hero begins -->
+
   
-  <div class="col-md-3">
-      <img style="height : 300px; width : 100%;"
-      src="https://media.istockphoto.com/id/1187951204/photo/camera-lens-with-red-and-blue-backlight-macro-photography-lenses-horizontal-photography.jpg?s=612x612&w=0&k=20&c=CnuTkeg8vE7cvsyn7nAQB41bHZPXmEQZnZ52O7OZrtg=" />
-  </div>
-  <div class="col-md-3">
-    <img style="height : 300px; width : 100%;"
-    src="https://images.pexels.com/photos/274973/pexels-photo-274973.jpeg?cs=srgb&dl=pexels-pixabay-274973.jpg&fm=jpg" />
-  </div>
-  <div class="col-md-3">
-    <img style="height : 300px; width : 100%;"
-    src="https://images.unsplash.com/photo-1611842642932-fbec0d723eb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9sZGluZyUyMGNhbWVyYXxlbnwwfHwwfHw%3D&w=1000&q=80" />
-  </div>
-  <div class="col-md-3">
-    <img style="height : 300px; width : 100%;"
-    src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
-  </div>
-</div>
- <!--Hero ends here -->
+  <section class="main">
+    <div class="container py-5">
+      <div class="row py-5">
+        <div class="col-lg-7 pt-5 text">
+          <h4>Buy or sell using cUSD</h4>
+          <h2>on these amazing <i>arttTTT</i> deals.</h2>
+          <button class="btn1 mt-3"data-bs-toggle="modal"
+          data-bs-target="#addModal">Add Now!</button>
+     
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+ <!--Hero ends -->
 
 
 <br />
 
 <!-- divs showing buttons used in switching views -->
-<div class="row my-4">
-  <div class="col-md-4"></div>
-
-  <div class="col-md-4">
-
-</div>
-<div class="col-md-4"></div>
-</div>
 <!-- end of div -->
 
 <br />
 
 
- <!-- Start of container showing listed cameras -->
+ <!-- Start of container showing listed art -->
         <main id="marketplace" class="row">
           <div class="d-flex mt-3 justify-content-center">
-  <div class="spinner-border text-success spinner-border-sm" role="status">
+  <div class="spinner-border spinner-border-sm spinner-color" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-    <p class="mx-1">Fetching  cameras...</p>
+    <p class="mx-1">Your <b>•aesthete•</b> is almost in view...</p>
 </div>
         </main>
 
@@ -126,7 +253,7 @@
   <div class="spinner-border text-success spinner-border-sm" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-    <p class="mx-1">Fetching data ...</p>
+    <p class="mx-1">Fetching art...</p>
 </div>
         </main>
 
@@ -134,150 +261,336 @@
       </div>
 <!-- End of container -->
 
-<!-- modal to edit price -->
-    <div
-      class="modal fade"
-      id="addModalForEdit"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <form>
-              <div class="form-row">
-                <div class="col">
-                  <input
-                    type="text"
-                    id="newPrice"
-                    class="form-control mb-2"
-                    placeholder="New Price"
-                  />
-                </div>
-              </div>
-            </form>
+<!-- About aesthete -->
+<section class="new">
+  <div class="container py-5">
+    <div class="row text-center">
+      <div class="col-lg-7 m-auto">
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="https://thumbs.dreamstime.com/b/convenience-store-white-background-35067315.jpg" class="img-luid"alt="">
+            <h6>CONVENIENCE</h6>
+
           </div>
+          <div class="col-lg-4">
+            <img src="https://img.freepik.com/premium-vector/man-holding-social-media-subscriber-follower-increase-statistics-sign-vector-icon-isolated-white-background_88813-2552.jpg" class="img-luid"alt="">
+            <h6>INCREASED ACCESS</h6>
 
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-light border"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-dark"
-              data-bs-dismiss="modal"
-              id="editCameraBtn"
-            >
-              Edit Price
-            </button>
+
           </div>
-        </div>
-      </div>
-    </div>
+          <div class="col-lg-4">
+            <img src="https://fcit.usf.edu/matrix/wp-content/uploads/2016/12/Robot-27-C-1.jpg" class="img-luid"alt="">
+            <h6>TRANSPARENCY</h6>
 
 
-<!-- start of modal to list a cameras -->
-    <div
-      class="modal fade"
-      id="addModal"
-      tabindex="-1"
-      aria-labelledby="newProductModalLabel1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="newProductModalLabel1">New </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-row">
-                <div class="col">
-                  <input
-                    type="text"
-                    id="cameraName"
-                    class="form-control mb-2"
-                    placeholder="Camera Name"
-                  />
-                </div>
 
-                <div class="col">
-                  <input
-                    type="text"
-                    id="cameraImgUrl"
-                    class="form-control mb-2"
-                    placeholder="Camera Image URL"
-                  />
-                </div>
-
-                <div class="col">
-                  <input
-                    type="textarea"
-                    id="cameraDescription"
-                    class="form-control mb-2"
-                    placeholder="Camera Description"
-                  />
-                </div>
-
-                <div class="col">
-                  <input
-                    type="text"
-                    id="cameraLocation"
-                    class="form-control mb-2"
-                    placeholder="Camera Location"
-                  />
-                </div>
-
-                <div class="col">
-                  <input
-                    type="text"
-                    id="price"
-                    class="form-control mb-2"
-                    placeholder="price"
-                  />
-                </div>
-
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-light border"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-dark"
-              data-bs-dismiss="modal"
-              id="listCameraBtn"
-            >
-              List Camera
-            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-    <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/ethereum-blockies@0.1.1/blockies.min.js"></script>
-  <script type="text/javascript" src="main.js"></script></body>
+</section>
 
+<!-- End about aesthete -->
+
+<!-- modal to edit price -->
+<div
+class="modal fade"
+id="addModalForEdit"
+tabindex="-1"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-body">
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <input
+              type="text"
+              id="newPrice"
+              class="form-control mb-2"
+              placeholder="New Price"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-light border"
+        data-bs-dismiss="modal"
+      >
+        Close
+      </button>
+      <button
+        type="button"
+        class="btn btn-dark"
+        data-bs-dismiss="modal"
+        id="editaestheticBtn"
+      >
+        Edit Price
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<!-- start of modal to list art-->
+<div
+class="modal fade"
+id="addModal"
+tabindex="-1"
+aria-labelledby="newProductModalLabel1"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="newProductModalLabel1">New </h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <input
+              type="text"
+              id="aestheticName"
+              class="form-control mb-2"
+              placeholder="Aesthetic Name"
+            />
+          </div>
+
+          <div class="col">
+            <input
+              type="text"
+              id="aestheticImgUrl"
+              class="form-control mb-2"
+              placeholder="Aesthetic Image URL"
+            />
+          </div>
+
+          <div class="col">
+            <input
+              type="textarea"
+              id="aestheticDescription"
+              class="form-control mb-2"
+              placeholder="Aesthetic Description"
+            />
+          </div>
+
+          <div class="col">
+            <input
+              type="text"
+              id="aestheticLocation"
+              class="form-control mb-2"
+              placeholder="Aesthetic Location"
+            />
+          </div>
+
+          <div class="col">
+            <input
+              type="text"
+              id="price"
+              class="form-control mb-2"
+              placeholder="price"
+            />
+          </div>
+
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-light border"
+        data-bs-dismiss="modal"
+      >
+        Close
+      </button>
+      <button
+        type="button"
+        class="btn btn-dark"
+        data-bs-dismiss="modal"
+        id="listAestheticBtn"
+      >
+        List Aesthetic
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Here's What People Say About <b style="color:#7d5a50">•aesthete•</b> </h2>
+  <div class="row gx-5">
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100">
+        <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="padding: 2%;"class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title mb-0">Jenna Ortega</h5>
+          <p class="card-text text-muted mb-2">Visual Arts</p>
+          <p class="card-text"><i>I've found some amazing vintage pieces on Aesthete. It's my go-to for adding character to my home.</i></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100">
+        <img src="https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="padding: 2%;"class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title mb-0">Kerry Samantha</h5>
+          <p class="card-text text-muted mb-2">Entrepreneurship</p>
+          <p class="card-text"><i>Aesthete has been a game-changer for my small business. The community is so supportive and the platform is easy to use.</i></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100">
+        <img src="https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="padding: 2%;" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title mb-0">Jessica Chen</h5>
+          <p class="card-text text-muted mb-2">Art Collecting</p>
+          <p class="card-text"><i>Aesthete is my favorite place to discover new, up-and-coming artists. I love supporting emerging talent.</i></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100">
+        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="padding: 2%;" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title mb-0">Isaac Jackson</h5>
+          <p class="card-text text-muted mb-2">Painting</p>
+          <p class="card-text"><i>As an artist at Aesthete, I feel supported and empowered to take risks and try new things. It's a truly inspiring environment.</i></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100">
+        <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="padding: 2%;" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title mb-0">Juan Rodriguez</h5>
+          <p class="card-text text-muted mb-2">Photography</p>
+          <p class="card-text"><i>At Aesthete, we're not just creating art—we're creating experiences.</i>></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100">
+        <img src="https://images.pexels.com/photos/1308582/pexels-photo-1308582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="padding: 2%;" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title mb-0">Maya Patel</h5>
+          <p class="card-text text-muted mb-2">Graphic Design</p>
+          <p class="card-text"><i>Aesthete has helped me turn my hobby into a side hustle. It's empowering to have a platform to share my creativity with others.</i></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+  crossorigin="anonymous"
+  ></script>
+  <script src="https://unpkg.com/ethereum-blockies@0.1.1/blockies.min.js"></script>
+<script type="text/javascript" src="main.js"></script></body>
+<section class="my-5 pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 m-auto">
+        <h4>Be the first view new •aesthetics•</h4>
+     
+        <div class="row">
+          <div class="col-8">
+            <div class="input-group">
+              <input type="text" class="form-control mb-sm-0" placeholder="Email Here...">
+            </div>
+          </div>
+          <div class="col-4 ps-0">
+            <button type="button" style="background-color:#f3d7b3;" class="btn bg-gradient-info mb-0 h-100 position-relative z-index-2">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 ms-auto">
+        <div class="position-relative">
+          <img class="max-width-50 w-100 position-relative z-index-2" src="https://images.pexels.com/photos/1597623/pexels-photo-1597623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="image">
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-4 mx-auto text-center">
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Home
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Store
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+          Contact
+        </a>
+       
+      </div>
+      <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+          <span class="text-lg fab fa-dribbble"></span>
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+          <span class="text-lg fab fa-twitter"></span>
+        </a>
+        <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+          <span class="text-lg fab fa-instagram"></span>
+        </a>
+       
+      </div>
+    </div>
+    <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
+      <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <span class="text-lg fab fa-dribbble"></span>
+      </a>
+      <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <span class="text-lg fab fa-twitter"></span>
+      </a>
+      <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <span class="text-lg fab fa-instagram"></span>
+      </a>
+      <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <span class="text-lg fab fa-pinterest"></span>
+      </a>
+      <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+        <span class="text-lg fab fa-github"></span>
+      </a>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-8 mx-auto text-center mt-1">
+        <p class="mb-0 text-secondary">
+          Copyright © <script>
+            document.write(new Date().getFullYear())
+          </script> by Arabella
+        </p>
+      </div>
+      </div>
+    </div>
+  </div>
+</footer>
 <!-- End of .container -->
 </html>
