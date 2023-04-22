@@ -114,12 +114,16 @@ function renderProducts() {
                 </span>
 
                 <div class="d-grid gap-2">
-                  <a class="btn btn-lg btn-dark buyBtn fs-6 p-3" id=${aesthetics[i].index}>
-                      Buy for ${aesthetics[i].price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
-                  </a> 
-                  <a class="btn btn-lg btn-dark deleteBtn fs-6 p-3" id=${aesthetics[i].index}>Delete Camera</a>
-                  <a class="btn btn-dark editBtn" id=${aesthetics[i].index}>Edit Price</a>
+              
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-lg btn-dark deleteBtn fs-6 p-3 me-2" id=${aesthetics[i].index} style="background-color: #f3d7b3; border: none; color: black;">Delete Aesthete</a>
+                    <a class="btn btn-lg btn-dark editBtn fs-6 p-3 me-2" id=${aesthetics[i].index} style="background-color: #f3d7b3; border: none; color: black;">Edit Price</a>
                 </div>
+
+                <a class="btn btn-lg btn-dark buyBtn fs-6 p-3" id=${aesthetics[i].index} style="background-color: #7d5a50; border: none;">
+                Buy for ${aesthetics[i].price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
+            </a> 
+            </div>
                 
               </div>
             </div>
@@ -201,16 +205,16 @@ document.querySelector("#marketplace").addEventListener("click", async (e) => {
     const index = e.target.id
     notification("⌛ Waiting for payment approval...")
     try {
-      await approve(cameras[index].price)
+      await approve(aesthetics[index].price)
     } catch (error) {
       notification(`⚠️ ${error}.`)
     }
-    notification(`⌛ Awaiting payment for "${cameras[index].name}"...`)
+    notification(`⌛ Awaiting payment for "${aesthetics[index].name}"...`)
     try {
       await contract.methods
         .buyCamera(index)
         .send({ from: kit.defaultAccount })
-      notification(`🎉 You successfully bought "${cameras[index].name}".`)
+      notification(`🎉 You successfully bought "${aesthetics[index].name}".`)
       getProducts()
       getBalance()
     } catch (error) {
@@ -233,7 +237,7 @@ document.querySelector("#marketplace").addEventListener("click", async (e) => {
     try {
       // const result = 
       await contract.methods
-        .deleteaesthetic(index)
+        .deleteAesthetic(index)
         .send({ from: kit.defaultAccount })
       notification(`🎉 You successfully deleted "${aesthetics[index].name}".`)
       getProducts()
@@ -261,7 +265,7 @@ document.querySelector("#marketplace").addEventListener("click", async (e) => {
 })
 
 document
-  .querySelector("#editaestheticBtn")
+  .querySelector("#editAestheticBtn")
   .addEventListener("click", async (e) => {
 
     let price = new BigNumber(document.getElementById("newPrice").value).shiftedBy(ERC20_DECIMALS)
