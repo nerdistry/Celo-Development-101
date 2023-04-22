@@ -7,7 +7,7 @@ import marketplaceAbi from "../contract/marketplace.abi.json"
 import erc20Abi from "../contract/erc20.abi.json"
 
 const ERC20_DECIMALS = 18
-const MPContractAddress = "0x0796C8C3b37943e0a4bd797A3aEFd39a44c5131e"
+const MPContractAddress = "0x6fE8754e67095eD9Fda0463f7375B4C8CE926866"
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"
 
 let kit
@@ -75,6 +75,7 @@ const getProducts = async function() {
 }
 
 
+
 function renderProducts() {
 
   let marketplace = $("#marketplace");
@@ -86,15 +87,20 @@ function renderProducts() {
         marketplace.append(
           `
           <div class="col-md-4">
+
             <div class="card mb-4">
+
               <img class="card-img-top" src="${aesthetics[i].image}" alt="..." style="height : 150px;">
               <div class="position-absolute top-0 end-0 bg-warning mt-4 px-2 py-1 rounded-start">
                 ${aesthetics[i].sold} Sold
               </div>
+
               <div class="card-body text-left p-3 position-relative">
+
                 <div class="translate-middle-y position-absolute top-0 end-0"  id="${aesthetics[i].index}">
                 ${identiconTemplate(aesthetics[i].owner)}
                 </div>
+
                 <p class="card-title  fw-bold mt-2 text-uppercase">${aesthetics[i].name}</p>
                 <p class="mt-2 text-left fs-6">
                   ${new BigNumber(aesthetics[i].price).shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
@@ -106,16 +112,13 @@ function renderProducts() {
                 <span class="mt-2 text-left fs-6">
                   ${aesthetics[i].location}
                 </span>
+
                 <div class="d-grid gap-2">
                   <a class="btn btn-lg btn-dark buyBtn fs-6 p-3" id=${aesthetics[i].index}>
                       Buy for ${aesthetics[i].price.shiftedBy(-ERC20_DECIMALS).toFixed(2)} cUSD
-                  </a>
-                      
-                  <a class="btn btn-lg btn-dark deleteBtn fs-6 p-3" id=${aesthetics[i].index}>Delete aesthetic
-                  </a>
-                  <a class="btn btn-dark editBtn" id=${aesthetics[i].index}>Edit Price
-                  </a>
-                  
+                  </a> 
+                  <a class="btn btn-lg btn-dark deleteBtn fs-6 p-3" id=${aesthetics[i].index}>Delete Camera</a>
+                  <a class="btn btn-dark editBtn" id=${aesthetics[i].index}>Edit Price</a>
                 </div>
                 
               </div>
@@ -166,6 +169,7 @@ window.addEventListener("load", async () => {
   notificationOff()
 });
 
+
 document
   .querySelector("#listAestheticBtn")
   .addEventListener("click", async (e) => {
@@ -182,7 +186,7 @@ document
     notification(`⌛ Adding "${params[0]}"...`)
     try {
       await contract.methods
-        .listaesthetic(...params)
+        .listAesthetic(...params) 
         .send({ from: kit.defaultAccount })
     } catch (error) {
       notification(`⚠️ ${error}.`)
@@ -197,16 +201,16 @@ document.querySelector("#marketplace").addEventListener("click", async (e) => {
     const index = e.target.id
     notification("⌛ Waiting for payment approval...")
     try {
-      await approve(aesthetics[index].price)
+      await approve(cameras[index].price)
     } catch (error) {
       notification(`⚠️ ${error}.`)
     }
-    notification(`⌛ Awaiting payment for "${aesthetics[index].name}"...`)
+    notification(`⌛ Awaiting payment for "${cameras[index].name}"...`)
     try {
       await contract.methods
-        .buyaesthetic(index)
+        .buyCamera(index)
         .send({ from: kit.defaultAccount })
-      notification(`🎉 You successfully bought "${aesthetics[index].name}".`)
+      notification(`🎉 You successfully bought "${cameras[index].name}".`)
       getProducts()
       getBalance()
     } catch (error) {
