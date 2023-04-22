@@ -120,6 +120,8 @@
         
       }
 
+    
+
 
       .col-lg-4 img{
         border-radius: 50%;
@@ -164,9 +166,9 @@
     <div class="container mt-2" style="max-width: 72em;">
 
     <div>
-          <div class="alert alert-warning fixed-top" role="alert">
-            <span id="notification">⌛ Loading please wait...</span>
-          </div>
+          <div class="alert alert-warning fixed-top" role="alert" style="background-color: #f3d7b3;">
+            <span id="notification" style="font-weight: 500; font-size: large; color: black;"> ⌛ Loading...</span>
+                    </div>
     </div>
 
 
@@ -241,9 +243,9 @@
  <!-- Start of container showing listed art -->
         <main id="marketplace" class="row">
           <div class="d-flex mt-3 justify-content-center">
-  <div class="spinner-border spinner-border-sm" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
+            <div class="spinner-border spinner-border-sm spinner-color" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
     <p class="mx-1">Your <b>•aesthete•</b> is almost in view...</p>
 </div>
         </main>
@@ -298,6 +300,7 @@ class="modal fade"
 id="addModalForEdit"
 tabindex="-1"
 aria-hidden="true"
+
 >
 <div class="modal-dialog">
   <div class="modal-content">
@@ -329,6 +332,8 @@ aria-hidden="true"
         class="btn btn-dark"
         data-bs-dismiss="modal"
         id="editAestheticBtn"
+        style="background-color: #f3d7b3; border: none; color: black;"
+
       >
         Edit Price
       </button>
@@ -357,6 +362,8 @@ aria-hidden="true"
         class="btn-close"
         data-bs-dismiss="modal"
         aria-label="Close"
+
+      
       ></button>
     </div>
     <div class="modal-body">
@@ -368,6 +375,7 @@ aria-hidden="true"
               id="aestheticName"
               class="form-control mb-2"
               placeholder="Aesthetic Name"
+              style="color: #7d5a50; border-color: #f7d5a8;"
             />
           </div>
 
@@ -377,6 +385,8 @@ aria-hidden="true"
               id="aestheticImgUrl"
               class="form-control mb-2"
               placeholder="Aesthetic Image URL"
+              style="color: #7d5a50; border-color: #f7d5a8;"
+
             />
           </div>
 
@@ -386,6 +396,8 @@ aria-hidden="true"
               id="aestheticDescription"
               class="form-control mb-2"
               placeholder="Aesthetic Description"
+              style="color: #7d5a50; border-color: #f7d5a8;"
+
             />
           </div>
 
@@ -395,6 +407,8 @@ aria-hidden="true"
               id="aestheticLocation"
               class="form-control mb-2"
               placeholder="Aesthetic Location"
+              style="color: #7d5a50; border-color: #f7d5a8;"
+
             />
           </div>
 
@@ -404,6 +418,8 @@ aria-hidden="true"
               id="price"
               class="form-control mb-2"
               placeholder="price"
+              style="color: #7d5a50; border-color: #f7d5a8; "
+
             />
           </div>
 
@@ -415,6 +431,8 @@ aria-hidden="true"
         type="button"
         class="btn btn-light border"
         data-bs-dismiss="modal"
+        style="background-color: #7d5a50; border: none; color: white;"
+
       >
         Close
       </button>
@@ -423,6 +441,7 @@ aria-hidden="true"
         class="btn btn-dark"
         data-bs-dismiss="modal"
         id="listAestheticBtn"
+        style="background-color: #f3d7b3; border: none; color: black;"
       >
         List Aesthetic
       </button>
@@ -430,6 +449,7 @@ aria-hidden="true"
   </div>
 </div>
 </div>
+
 </div>
 
 <div class="container my-5">
@@ -508,6 +528,7 @@ aria-hidden="true"
   <script src="https://unpkg.com/ethereum-blockies@0.1.1/blockies.min.js"></script>
 <script type="text/javascript" src="main.js"></script>
 </body>
+
 <section class="my-5 pt-5">
   <div class="container">
     <div class="row">
@@ -534,6 +555,7 @@ aria-hidden="true"
     </div>
   </div>
 </section>
+
 <footer class="footer py-5">
   <div class="container">
     <div class="row">
