@@ -15,6 +15,9 @@ interface IERC20Token {
 
 contract Aesthetics{
 
+    event AestheticListed(uint indexed index, address owner, string name, string image, string description, string location, uint price, uint sold);
+    event AestheticDeleted(uint indexed index);
+
     //track the number of  stored
       uint internal listedAestheticLength = 0;
 
@@ -69,6 +72,7 @@ contract Aesthetics{
             _sold
             );
             listedAestheticLength++;
+            emit AestheticListed(listedAestheticLength, msg.sender, _name, _image, _description, _location, _price, _sold);
     }
     
     //get  with specific id
@@ -96,6 +100,7 @@ contract Aesthetics{
 
     //Buy
     function  buyAesthetic(uint _index) public payable {
+        require(_index < listedAestheticLength, "Invalid aesthetic index");
         aesthetic memory _aesthetic = listedAesthetics[_index];
         require(msg.sender != _aesthetic.owner,"You are already the owner");
         require(IERC20Token(cUsdTokenAddress).balanceOf(msg.sender) >= listedAesthetics[_index].price, "Insufficient balance in cUSD token");
@@ -122,6 +127,9 @@ contract Aesthetics{
     // delete 
     function deleteAesthetic(uint _index) public onlyOwner(_index) {
         delete listedAesthetics[_index];
+        listedAestheticLength--;
+        emit AestheticDeleted(_index);
+        
     }
 
     // Edit the price
